@@ -3,6 +3,8 @@ import authRoutes from '../features/auth/auth-routes.js'
 import productRoutes from '../features/product/product-routes.js'
 import promotionsRoutes from '../features/promotions/promotions-routes.js'
 import reportsRoutes from '../features/reports/reports-routes.js'
+import cartRoutes from '../features/cart/cart-routes.js'
+import ordersRoutes from '../features/orders/orders-routes.js'
 const router = express.Router()
 
 // Feature Routes
@@ -29,4 +31,16 @@ router.use("/promotions", promotionsRoutes)
 router.use("/reports", reportsRoutes)
 
 
+// Cart Routes
+
+router.use("/cart", cartRoutes)
+
+
+// Order Routes
+
+router.use("/orders", ordersRoutes)
+
 export default router
+
+
+//??????????????????????????????
