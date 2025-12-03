@@ -1,10 +1,14 @@
 import express from 'express'
 import { AuthController } from './controller/auth-controller.js'
+import { validate } from '../../utils/validate.middleware.js'
+import  AuthValidations from '../auth/auth.validations.js'
 const authController = new AuthController()
 
 //AuthController().doLogin
 
 const router = express.Router()
+
+router.post("/register", validate(AuthValidations.registerSchema), authController.doRegister)
 
 router.post("/login", authController.doLogin)
 
