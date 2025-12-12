@@ -1,29 +1,36 @@
 import ResponseHandler from '../../../common/reponse_handler.js'
-import  AuthValidations  from '../auth.validations.js'
+// import AuthValidations from '../auth.validations.js'
+import pool from '../../../database/db.pool.js'
 
 
 
 class AuthController {
-    doLogin = (req, res) => {
-        if(req.body.mobile.length == 10){
-        ResponseHandler.success(res, [], 'Data Retrieved Successfully', 500 )
 
-        }
-        else{
-            ResponseHandler.error(res, 'Entered Mobile Number is Invalid',301)
-        }
+    authenticateUser = async (req, res) => {
+
+        // const { error } = AuthValidations.registerSchema.validate(req.body, { abortEarly: false })
+        // if (error){         //TODO: why only error works and not validationError
+        //      console.log(error.details) 
+        //      ResponseHandler.error(res, error.details.map(err => err.type))
+        //     }
+        //      else{
+        //          return ResponseHandler.success(res,[], 'test')
+        //      }
     }
-    doRegister = (req, res) => {
-        console.log(req.body)
-        const {validationError} = AuthValidations.register().validate(req.body)
-        if(validationError){
-            return ResponseHandler.error(res, validationError.details)
+    sendOTP = async (req, res) => {
+        const [data] = await pool.execute("SELECT * FROM cities")
+
+
+        if (data.length <= 0) {
+ 
+                    return ResponseHandler.error(res, 'No data found')
+
         }
-        ResponseHandler.success(res,[], validationError, 200)
+        else {
+        return ResponseHandler.success(res, data, 'Data Successfully found')
 
-    }
-    forgetPassword = (req, res) => {
 
+        }
     }
 
 }
