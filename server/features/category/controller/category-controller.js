@@ -15,12 +15,16 @@ class CategoryController{
     updateCategory=(res,req)=>{
         return ResponseHandler.success(res,[],"abc")
     }
-
+  
 
     /// add category
 
     addCategory= (res,req)=>{
         return ResponseHandler.success(res,[],"af")
+    }
+
+    deleteCategory= (res,req)=>{
+        return ResponseHandler.success(res,[],"delete")
     }
 }
 
