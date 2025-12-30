@@ -4,7 +4,7 @@ import cors from 'cors'
 import appRoutes from './server/routes/app-routes.js'
 import ResponseHandler from './server/common/reponse_handler.js'
 
-const app = express() //we create an instance  of express
+const app = express()  //we create an instance  of express
 app.use(express.json()) 
 app.use(cors()) //cors site allowed 
 dotenv.config()  //dotenv backend initialized
