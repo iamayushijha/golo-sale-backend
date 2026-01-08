@@ -1,11 +1,17 @@
-import dbPool from "../../../../database/dbPool.js";
-import ResponseHandler from "../../../../common/reponse_handler.js";
+import ResponseHandler from "../../../common/reponse_handler.js"
+import dbPool from "../../../database/db.pool.js"
 
 class CitiesController {
   // Fetch cities list
-  citiesList = (req, res) => {
-    ResponseHandler.success(res, [], "Cities List Fetched", 200);
+  citiesList = async (req, res, next) => {
+    try {
+      const [rows] = await dbPool.execute('SELECT * FROM cities');
+      ResponseHandler.success(res, rows, 'Cities List Fetched', 200);
+    } catch (error) {
+      ResponseHandler.error(res, error.message, 500);
+    }
   };
+
 
   // Update city details
   updateCity = (req, res) => {
@@ -14,6 +20,7 @@ class CitiesController {
 
   // Add new city
   addCity = (req, res) => {
+
     ResponseHandler.success(res, [], "City Added", 200);
   };
 

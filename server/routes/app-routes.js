@@ -7,6 +7,7 @@ import cartRoutes from '../features/cart/cart-routes.js'
 import ordersRoutes from '../features/orders/orders-routes.js'
 import categoryRoutes from '../features/category/category-routes.js'
 import settingsRoutes from '../features/settings/settings-routes.js'
+import cityRoutes from '../features/cities/cities-routes.js'
 
 const router = express.Router()
 
@@ -49,6 +50,9 @@ router.use('/category',categoryRoutes)
 
 //Settings Routes
 router.use('/settings',settingsRoutes)
+
+// Cities Routes
+router.use('/cities',cityRoutes)
 
 export default router
 

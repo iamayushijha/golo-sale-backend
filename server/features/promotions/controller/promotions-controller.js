@@ -1,5 +1,5 @@
-import dbPool from "../../../../database/dbPool.js";
-import ResponseHandler from "../../../../common/reponse_handler.js";
+
+import ResponseHandler from "../../../common/reponse_handler.js"
 
 class PromotionsController {
   // Fetch promotions list
