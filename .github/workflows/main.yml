@@ -22,7 +22,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./
-          server-dir: /
+          server-dir: ./
           exclude: |
             **/.*
             **/node_modules/**
