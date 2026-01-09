@@ -1,14 +1,29 @@
-- name: FTP Deploy (Backend)
-  uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-  with:
-    server: ${{ secrets.FTP_SERVER }}
-    username: ${{ secrets.FTP_USER }}
-    password: ${{ secrets.FTP_PASS }}
-    port: 21
-    protocol: ftp
-    local-dir: ./
-    server-dir: /www/wwwroot/golo-backend/
-    exclude: |
-      **/.*
-      **/node_modules/**
-      **/tests/**
+name: FTP Deploy (Backend)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy (Backend)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          local-dir: ./
+          server-dir: /www/wwwroot/golo-backend/
+          exclude: |
+            **/.*
+            **/node_modules/**
+            **/tests/**
