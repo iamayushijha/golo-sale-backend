@@ -1,2 +1,4 @@
 # Modules folder 
 node_modules
+uploads
+.vscode

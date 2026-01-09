@@ -1,10 +1,9 @@
-import dbPool from "../../../database/db.pool.js";
+
 import ResponseHandler from "../../../common/reponse_handler.js";
 class SettingsController {
     // Fetch settings
     getSettings = (req, res) => {
-        var {data} = dbPool.execute("SELECT * FROM settings");
-        console.log(data);
+
         ResponseHandler.success(res, [], "Settings Fetched", 200);
     };
     // Update settings
