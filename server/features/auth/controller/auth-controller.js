@@ -1,6 +1,6 @@
 import ResponseHandler from '../../../common/reponse_handler.js'
 // import AuthValidations from '../auth.validations.js'
-import pool from '../../../database/db.pool.js'
+
 
 
 
@@ -18,19 +18,7 @@ class AuthController {
         //      }
     }
     sendOTP = async (req, res) => {
-        const [data] = await pool.execute("SELECT * FROM cities")
 
-
-        if (data.length <= 0) {
- 
-                    return ResponseHandler.error(res, 'No data found')
-
-        }
-        else {
-        return ResponseHandler.success(res, data, 'Data Successfully found')
-
-
-        }
     }
 
 }

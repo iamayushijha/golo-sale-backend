@@ -1,4 +1,3 @@
-import dbPool from '../../../database/db.pool.js'
 import ResponseHandler from '../../../common/reponse_handler.js'
 
 
