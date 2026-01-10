@@ -1,13 +1,14 @@
 import express from 'express'
 import authRoutes from '../features/auth/auth-routes.js'
 import productRoutes from '../features/product/product-routes.js'
-import promotionsRoutes from '../features/promotions/promotions-routes.js'
+import bannerRoutes from '../features/banners/banners-routes.js'
 import reportsRoutes from '../features/reports/reports-routes.js'
 import cartRoutes from '../features/cart/cart-routes.js'
 import ordersRoutes from '../features/orders/orders-routes.js'
 import categoryRoutes from '../features/category/category-routes.js'
 import settingsRoutes from '../features/settings/settings-routes.js'
 import cityRoutes from '../features/cities/cities-routes.js'
+import mediaRoutes from '../features/media/media-routes.js'
 
 const router = express.Router()
 
@@ -28,7 +29,7 @@ router.use("/product", productRoutes)
 
 //Promotions Routes  
 
-router.use("/promotions", promotionsRoutes)
+router.use("/banners", bannerRoutes)
 
 // Reports Routes
 
@@ -53,6 +54,10 @@ router.use('/settings',settingsRoutes)
 
 // Cities Routes
 router.use('/cities',cityRoutes)
+
+
+//// Media Routes
+router.use('/media',mediaRoutes)
 
 export default router
 

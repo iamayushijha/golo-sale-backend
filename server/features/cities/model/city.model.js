@@ -1,8 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../../../database/sequelize.js'
 
-const City = sequelize.define(
-    'City',
+const City = sequelize.define('City',
     {
         cityId: {
             type: DataTypes.UUID,
@@ -23,7 +22,7 @@ const City = sequelize.define(
     },
     {
         tableName: 'cities',
-        timestamps: false,
+        timestamps: true,
     }
 );
 

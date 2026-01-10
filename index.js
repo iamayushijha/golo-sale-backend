@@ -6,7 +6,8 @@ import ResponseHandler from './server/common/reponse_handler.js'
 
 
 const app = express()  //we create an instance  of express
-app.use(express.json()) 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(cors()) //cors site allowed 
 dotenv.config()  //dotenv backend initialized
 
