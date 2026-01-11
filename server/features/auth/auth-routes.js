@@ -7,13 +7,13 @@ const authController = new AuthController()
 
 const router = express.Router()
 
-router.post("/authUser", authController.authenticateUser)
-router.get("/sendOtp", authController.sendOTP)
+
+router.post("/sendOtp", authController.sendOTP)
+router.post("/verifyOtp", authController.verifyOTP)
 
 
 
-router.get("/test", (req, res)=>{
-    res.send("Ok working")
-})
+
+
 export default router
 
