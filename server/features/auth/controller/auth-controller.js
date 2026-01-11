@@ -25,11 +25,11 @@ class AuthController {
             const { mobile } = req.body || {};
 
             if (mobile === undefined) {
-                return ResponseHandler.error(res, "Mobile No. is required", 400);
+                return ResponseHandler.error(res, "Mobile No. is required", 200);
             }
 
             if (typeof mobile !== "string" || mobile.trim() === "") {
-                return ResponseHandler.error(res, "Mobile No. cannot be empty", 400);
+                return ResponseHandler.error(res, "Mobile No. cannot be empty", 200);
             }
 
 
@@ -75,12 +75,12 @@ class AuthController {
         try{
             const response=await  authService.login({userMobile:mobile,otpCode:otp})
         if(response===null){
-            return ResponseHandler.error(res,'Invalid OTP',400)
+            return ResponseHandler.error(res,'Invalid OTP',200)
         }else{
             /// verify otp validity form response.otpValidity
 
             if(response.otpValidity<Date.now()){
-                return ResponseHandler.error(res,'OTP Expired',400)
+                return ResponseHandler.error(res,'OTP Expired',200)
             }else{
                 // After verification delete otp from db
                 await authService.updateUser(response.userId,{otpCode:6969,otpValidity:0})
@@ -92,7 +92,7 @@ class AuthController {
 
         }catch (error){
             console.error(error)
-            return ResponseHandler.error(res,error.errors[0].message,400)
+            return ResponseHandler.error(res,error.errors[0].message,200)
         }
     }
 
