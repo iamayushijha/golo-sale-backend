@@ -12,7 +12,7 @@ export default sequelize.define("Banner", {
         allowNull: false,
         defaultValue: '',
     },
-    bannerImage: {
+    bannerImageId: {
         type: DataTypes.STRING,
         allowNull: true,
         defaultValue: '',

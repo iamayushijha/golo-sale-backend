@@ -2,40 +2,34 @@ import ResponseHandler from "../../../common/reponse_handler.js";
 import { v4 as uuidv4 } from 'uuid';
 import normalizeStatus from "../../../utils/normalization.js";
 import CitiesService from "../service/city.service.js";
+import cityService from "../service/city.service.js";
 
 class CitiesController {
-    /* ================= GET CITIES ================= */
 
-    citiesList = async (req, res, next) => {
+
+    citiesList = async (req, res,) => {
         try {
             const cities = await CitiesService.getAllCities();
 
-            const data = cities.map(city => ({
-                ...city,
-                cityIcon: city.cityIcon
-                    ? `${req.protocol}://${req.get('host')}/images/cities/${city.cityIcon}`
-                    : null,
-            }));
-
-            ResponseHandler.success(res, data, 'Cities List Fetched');
+            ResponseHandler.success(res, cities, 'Cities List Fetched',200);
         } catch (error) {
-            next(error);
+            console.log(error);
         }
     };
 
-    /* ================= ADD CITY ================= */
 
-    addCity = async (req, res, next) => {
+
+    addCity = async (req, res,) => {
         try {
             const cityId = uuidv4();
 
-            const { name, status,imageId } = req.body;
+            const { name, status,cityImageId } = req.body;
 
             if (!name) {
                 return ResponseHandler.error(res, 'City name is required', 400);
             }if(!status){
                 return ResponseHandler.error(res,'Status is required',400)
-            }if(!imageId){
+            }if(!cityImageId){
                 return ResponseHandler.error(res,'City Image is required',400)
             }
 
@@ -45,25 +39,38 @@ class CitiesController {
             await CitiesService.createCity({
                 cityId,
                 cityName: name,
-                cityIcon: imageId,
+                cityImageId: cityImageId,
                 cityStatus,
             });
 
             ResponseHandler.success(
                 res,
-                { cityId, name, image: imageId, status: cityStatus },
+                { cityId, name, cityImageId: cityImageId, status: cityStatus },
                 'City added successfully',
                 201
             );
         } catch (error) {
-            next(error);
+         return  ResponseHandler.error(res, error, 500);
         }
     };
 
-    /* ================= UPDATE / DELETE ================= */
+
 
     updateCity = async (req, res) => {
-        ResponseHandler.success(res, [], 'City Updated');
+        const {cityId,status,cityImageId}=req.body;
+        if(!cityId){
+            return ResponseHandler.error(res,'City Id is required',400)
+        }if(!status){
+            return ResponseHandler.error(res,'Status is required',400)
+        }if(!cityImageId){
+            return ResponseHandler.error(res,'City Image is required',400)
+        }
+        try{
+            const response=await cityService.updateCity(cityId,{cityImageId:cityImageId,cityStatus:status})
+            return ResponseHandler.success(res,response,'City Updated',201)
+        }catch (error){
+            return ResponseHandler.error(res,error,500)
+        }
     };
 
 

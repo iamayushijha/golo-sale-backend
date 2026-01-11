@@ -12,8 +12,9 @@ const City = sequelize.define('City',
             type: DataTypes.STRING,
             allowNull: false,
         },
-        cityIcon: {
+        cityImageId: {
             type: DataTypes.STRING,
+
         },
         cityStatus: {
             type: DataTypes.ENUM('active', 'inactive'),

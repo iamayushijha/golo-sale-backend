@@ -7,7 +7,7 @@ const bannersController = new BannersController();
 
 router.get("/list", bannersController.bannersList)
 router.post("/add", bannersController.addBanner)
-router.patch("/update", bannersController.updateBanner)
+router.put("/update", bannersController.updateBanner)
 router.delete("/delete", bannersController.deleteBanner)
 
 

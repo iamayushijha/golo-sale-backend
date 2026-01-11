@@ -6,9 +6,14 @@ class MediaService {
         return mediaModel.create(data);
     }
 
-    getMedia = () => {
+    getAllMedia = () => {
         return mediaModel.findAll({ raw: true });
     }
+
+    async getMediaById(mediaId) {
+        return mediaModel.findByPk(mediaId);
+    }
+
     deleteMedia = (id) => {
         return mediaModel.destroy({ where: id });
     }

@@ -50,7 +50,7 @@ class BannersController {
       const bannerStatus=normalizeStatus(status)
 
 
-      const response= await bannerService.updateBanner(bannerId,{bannerImage:bannerImageId,bannerType:bannerType,cityId:cityId,bannerStatus:bannerStatus})
+      const response= await bannerService.updateBanner(bannerId,{bannerImageId:bannerImageId,bannerType:bannerType,cityId:cityId,bannerStatus:bannerStatus})
       return ResponseHandler.success(res,response,'Banner Updated',201)
 
     }catch (error){
@@ -82,7 +82,7 @@ class BannersController {
      const response= await bannerService.addBanner(
          {
            bannerId,
-           bannerImage:bannerImageId,
+           bannerImageId:bannerImageId,
            bannerType:bannerType,
            cityId:cityId,
            bannerStatus:bannerStatus

@@ -8,6 +8,12 @@ class CitiesService {
     async createCity(data) {
         return City.create(data);
     }
+
+    async updateCity(cityId, updateData) {
+        return City.update(updateData, {
+            where: {cityId}
+        })
+    }
 }
 
 export default new CitiesService();
