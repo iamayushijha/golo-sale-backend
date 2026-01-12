@@ -49,6 +49,10 @@ const User = sequelize.define(
             defaultValue: '',
         },
 
+        profilePicture:{
+            type:DataTypes.STRING,
+        },
+
         status: {
             type: DataTypes.ENUM("active", "inactive"),
             defaultValue: "inactive",
