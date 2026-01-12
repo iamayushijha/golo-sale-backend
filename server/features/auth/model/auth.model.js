@@ -43,7 +43,7 @@ const User = sequelize.define(
             defaultValue:'10'
         },
 
-        parentUserId: {
+        parentUserReferralCode: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: '',
