@@ -21,7 +21,7 @@ class  BannerService {
 
     // get city-specific banner
     getCityBanner = (cityId) => {
-        return Banner.findAll({ where: { cityId } });
+        return Banner.findAll({ where: { cityId },raw:true });
     }
 }
 

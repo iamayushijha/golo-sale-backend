@@ -28,6 +28,22 @@ class BannersController {
     }
   };
 
+  // Banner By CityId
+  bannerByCityId = async (req, res) => {
+    const cityId = req.query.cityId;
+    if(cityId===undefined){
+      return ResponseHandler.error(res,'City Id is required',400)
+    }else{
+      try{
+        const bannerResponse=await bannerService.getCityBanner(cityId)
+        return ResponseHandler.success(res,bannerResponse,'banners List Fetched',200)
+      }catch (error){
+        console.log(error)
+        return ResponseHandler.error(res,error,500)
+      }
+    }
+  }
+
   // Update banner details
   updateBanner = async(req, res) => {
     /// Update banner details
