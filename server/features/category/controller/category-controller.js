@@ -1,12 +1,17 @@
 import ResponseHandler from '../../../common/reponse_handler.js'
-
+import CategoryService from "../service/category.service.js";
 
 class CategoryController{
 
     /// get Category
 
-    getCategory= (res,req)=>{
-        return ResponseHandler.success(res,[],"working")
+    getCategory= async (req,res)=>{
+        try{
+            const response=await CategoryService.getAllCategories()
+            return ResponseHandler.success(res,response,'Category Fetched',200)
+        }catch (e){
+            return ResponseHandler.error(res,e,500)
+        }
     }
 
     /// Update category
