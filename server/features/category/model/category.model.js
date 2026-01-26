@@ -15,7 +15,10 @@ export default sequelize.define("Category", {
     categoryInfo:{
         type:DataTypes.STRING,
     },
-    categoryPicture:{
+    categoryPictureId:{
+        type:DataTypes.STRING,
+    },
+    cityId:{
         type:DataTypes.STRING,
     },
     status: {

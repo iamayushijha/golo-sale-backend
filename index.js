@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors()) //cors site allowed 
 dotenv.config()  //dotenv backend initialized
 
+/// Set Time Zone in the application.
+process.env.TZ = process.env.TIMEZONE;
+
+console.log(Date())
 
 app.use('/', appRoutes)
 
