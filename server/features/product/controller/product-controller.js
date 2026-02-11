@@ -1,6 +1,7 @@
 import ResponseHandler from "../../../common/reponse_handler.js"
 import productService from "../service/product.service.js";
 import { v4 as uuidv4 } from 'uuid';
+import {Op} from "sequelize";
 
 class ProductController {
 
@@ -68,9 +69,39 @@ class ProductController {
 
 
    /// Search Product
-   searchProduct = (req, res) => {
-      ResponseHandler.success(res, [], 'Product Search', 200)
-   }
+   searchProduct = async (req, res) => {
+      try {
+
+         let { productTitle, categoryId } = req.query;
+
+         let whereCondition = {};
+
+         // Search by Product Title (LIKE search for single word also)
+         if (productTitle && productTitle.trim() !== "") {
+            whereCondition.productTitle = {
+               [Op.like]: `%${productTitle.trim()}%`
+            };
+         }
+
+         // Search by Category
+         if (categoryId) {
+            whereCondition.productCategoryId = categoryId;
+         }
+
+         const response = await productService.searchProduct(whereCondition);
+
+         return ResponseHandler.success(
+             res,
+             response,
+             "Product Search Result",
+             200
+         );
+
+      } catch (error) {
+         return ResponseHandler.error(res, error.message, 500);
+      }
+   };
+
 
    //delete product
    deleteProduct = (req, res) => {

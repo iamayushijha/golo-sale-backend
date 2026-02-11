@@ -9,9 +9,13 @@ class  ProductService{
         return Product.create(data)
     }
 
-    searchProduct = (data) => {
-        return Product.findAll({where: data,raw: true})
-    }
+    searchProduct = (whereCondition) => {
+        return Product.findAll({
+            where: whereCondition,
+            raw: true
+        });
+    };
+
 }
 
 export default new ProductService();
