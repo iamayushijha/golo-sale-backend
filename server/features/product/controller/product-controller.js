@@ -72,7 +72,7 @@ class ProductController {
    searchProduct = async (req, res) => {
       try {
 
-         let { productTitle, categoryId } = req.query;
+         let { productTitle, categoryId,productId } = req.query;
 
          let whereCondition = {};
 
@@ -81,6 +81,12 @@ class ProductController {
             whereCondition.productTitle = {
                [Op.like]: `%${productTitle.trim()}%`
             };
+         }
+
+         // Search by I'd
+
+         if(productId){
+            whereCondition.productId = productId
          }
 
          // Search by Category
