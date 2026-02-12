@@ -24,7 +24,7 @@ class ProductController {
    addProduct = async (req, res) => {
       // Data Body for Product (productId, productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hashSubscriptionModel, status)
 
-      const {productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hasSubscriptionModel}=req.body;
+      const {productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hasSubscriptionModel,productUnitTag}=req.body;
 
       if(!productTitle){
          return ResponseHandler.error(res,'Product Title is required',400)
@@ -51,6 +51,10 @@ class ProductController {
          return ResponseHandler.error(res,'Has Subscription Model is required',400)
       }
 
+      if(productUnitTag===undefined){
+         return ResponseHandler.error(res,'Has UnitTag is required',400)
+      }
+
       const productId=uuidv4()
 
       try{
@@ -58,7 +62,7 @@ class ProductController {
             productId,productTitle,productInfo,
             productPrice,productMrp,productStock,
             productThumbnail,productCategoryId,
-            hasSubscriptionModel})
+            hasSubscriptionModel,productUnitTag,})
          return ResponseHandler.success(res,response,'Product Added',200)
       }catch (e) {
          return ResponseHandler.error(res,e,500)

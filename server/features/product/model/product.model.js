@@ -36,6 +36,11 @@ export default sequelize.define( 'Product', {
     hasSubscriptionModel:{
         type:DataTypes.TINYINT,
     },
+
+    productUnitTag:{
+      type:DataTypes.STRING,
+    },
+
     status: {
         type: DataTypes.ENUM("active", "inactive"),
         defaultValue: "inactive",
