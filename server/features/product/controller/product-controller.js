@@ -6,6 +6,7 @@ import {Op} from "sequelize";
 class ProductController {
 
    productList = async (req, res) => {
+      
       try{
          const response=await productService.getAllProducts()
          return ResponseHandler.success(res,response,'Product List Fetched',200)
@@ -16,13 +17,32 @@ class ProductController {
    }
 
    //update product details
-   updateProduct = (req, res) => {
+   updateProduct = async(req, res) => {
+        // Data Body for Product (productId, productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hasSubscriptionModel, productUnitTag,status)
+            const {productId,productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hasSubscriptionModel, productUnitTag,status}=req.body;
+
+      
+      
+      
+      
+        try{
+
+         const response=await productService.updateProduct(productId,{
+            productTitle,productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hasSubscriptionModel, productUnitTag, status
+         })
+         return ResponseHandler.success(res,[],"Product Updated",200)
+
+        }catch(error){
+         console.log(error)
+         return ResponseHandler.error(res,error,400)
+        }
+
       ResponseHandler.success(res, [], 'Product Updated', 200)
    }
 
    //add a new product
    addProduct = async (req, res) => {
-      // Data Body for Product (productId, productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hashSubscriptionModel, status)
+      // Data Body for Product (productId, productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hashSubscriptionModel, productUnitTag,status)
 
       const {productTitle, productInfo, productPrice, productMrp, productStock, productThumbnail, productCategoryId, hasSubscriptionModel,productUnitTag}=req.body;
 

@@ -16,6 +16,14 @@ class  ProductService{
         });
     };
 
+
+    updateProduct =(productId,data)=>{
+        return Product.update(
+             data,
+            {where:{productId}}
+        )
+    }
+
 }
 
 export default new ProductService();
