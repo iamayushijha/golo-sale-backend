@@ -20,7 +20,7 @@ class CartController{
                 return ResponseHandler.success(res, []);
             }
 
-            // Fetch product details in parallel (BEST PRACTICE)
+            // Fetch product details in parallel
             const finalCart = await Promise.all(
                 cartItems.map(async (item) => {
                     const productDetails = await ProductService.searchProduct({productId: item.productId});
@@ -32,7 +32,7 @@ class CartController{
                 })
             );
 
-            return ResponseHandler.success(res, finalCart);
+            return ResponseHandler.success(res, finalCart,"Cart Fetched Successfully");
 
         } catch (error) {
             return ResponseHandler.error(res, error.message || error);
@@ -66,8 +66,18 @@ class CartController{
 
 
     updateCart = async (req , res)=>{
-
-
+        const {cartId,productQty} = req.body
+        if(!cartId || !productQty){
+            return ResponseHandler.error(res,"Incorrect cartId or productQty")
+        }else {
+            // Update ProductQty
+         try{
+             const response = await CartService.updateQuantity(cartId, {productQty})
+            return ResponseHandler.success(res, response, 200)
+        }catch (e){
+             return ResponseHandler.error(res,e)
+         }
+        }
     }
 
     removeItemFromCart = async (req , res)=>{

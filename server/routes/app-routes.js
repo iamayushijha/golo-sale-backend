@@ -9,23 +9,21 @@ import categoryRoutes from '../features/category/category-routes.js'
 import settingsRoutes from '../features/settings/settings-routes.js'
 import cityRoutes from '../features/cities/cities-routes.js'
 import mediaRoutes from '../features/media/media-routes.js'
+import addressRoutes from "../features/address/address-routes.js";
 
 const router = express.Router()
 
 // Feature Routes
 
-// Auth Routes starts
+// Auth Routes
 
 router.use("/auth", authRoutes)
 
 
-// auth routes end
-
-// Product Routes Starts
+// Product Routes
 
 router.use("/product", productRoutes)
 
-// Products Routes Ends 
 
 //Promotions Routes  
 
@@ -58,6 +56,10 @@ router.use('/cities',cityRoutes)
 
 //// Media Routes
 router.use('/media',mediaRoutes)
+
+
+// Address Routes
+router.use('/address',addressRoutes)
 
 export default router
 
