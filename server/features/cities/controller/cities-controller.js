@@ -50,14 +50,14 @@ class CitiesController {
                 201
             );
         } catch (error) {
-         return  ResponseHandler.error(res, error, 500);
+            return  ResponseHandler.error(res, error, 500);
         }
     };
 
 
 
     updateCity = async (req, res) => {
-        const {cityId,status,cityImageId}=req.body;
+        const {cityId,status,cityImageId,name}=req.body;
         if(!cityId){
             return ResponseHandler.error(res,'City Id is required',400)
         }if(!status){
@@ -66,7 +66,7 @@ class CitiesController {
             return ResponseHandler.error(res,'City Image is required',400)
         }
         try{
-            const response=await cityService.updateCity(cityId,{cityImageId:cityImageId,cityStatus:status})
+            const response=await cityService.updateCity(cityId,{cityImageId:cityImageId,cityStatus:status,cityName:name})
             return ResponseHandler.success(res,response,'City Updated',201)
         }catch (error){
             return ResponseHandler.error(res,error,500)

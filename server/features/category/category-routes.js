@@ -11,13 +11,14 @@ router.get('/getCategories',categoryController.getCategory)
 
 
 /// Save Categories
+router.post('/addCategory',categoryController.addCategory)
 
-router.put('/addCategory',categoryController.addCategory)
+
+
 
 
 /// Update Categories
-
-router.patch('/updateCategory',categoryController.updateCategory)
+router.put('/updateCategory',categoryController.updateCategory)
 
 
 export default router
