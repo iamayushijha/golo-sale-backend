@@ -55,7 +55,7 @@ class CartController{
                     productId,
                     productQty
                 })
-                return  ResponseHandler.success(res, response,200)
+                return  ResponseHandler.success(res, response,"success")
             }catch(e){
                 return ResponseHandler.error(res,e)
             }

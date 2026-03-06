@@ -62,7 +62,7 @@ class CategoryController{
             return ResponseHandler.error(res,e,500)
         }
     }
-  
+
 
     /// add category
 
@@ -88,14 +88,14 @@ class CategoryController{
         }
         const categoryStatus=normalizeStatus(status)
 
-      try{
+        try{
             const response=await CategoryService.addCategory({
                 categoryId,categoryTitle,categoryInfo,categoryPictureId,cityId,categoryStatus
             })
-          return ResponseHandler.success(res,[response],"Category Added Successfully",201)
-      }catch (e){
-          return ResponseHandler.error(res,e,500)
-      }
+            return ResponseHandler.success(res,[response],"Category Added Successfully",201)
+        }catch (e){
+            return ResponseHandler.error(res,e,500)
+        }
 
 
 
