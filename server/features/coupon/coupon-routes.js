@@ -24,8 +24,8 @@ const couponController = new CouponController()
  *         required: false
  *         schema:
  *           type: string
- *           example: 23b
- *         description: Search coupon by code (example coupon/search?couponCode=23b)
+ *           example: SAVE20
+ *         description: Search coupon by code (example coupon/search?couponCode=SAVE20)
  *     responses:
  *       200:
  *         description: Coupons fetched successfully
@@ -86,8 +86,8 @@ router.post('/add', couponController.addCoupon)
  *             type: object
  *             properties:
  *               couponId:
- *                 type: integer
- *                 example: 1
+ *                 type: string
+ *                 example: 56950088-d10f-4a27-8eb4-109ae1240354
  *               couponCode:
  *                 type: string
  *                 example: SAVE25
@@ -125,8 +125,8 @@ router.put('/update', couponController.updateCoupon)
  *         name: couponId
  *         required: true
  *         schema:
- *           type: integer
- *           example: 1
+ *           type: string
+ *         example: abc
  *         description: Coupon ID to delete
  *     responses:
  *       200:

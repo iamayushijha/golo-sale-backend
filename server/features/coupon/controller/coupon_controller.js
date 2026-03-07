@@ -47,10 +47,39 @@ import normalizeStatus from "../../../utils/normalization.js";
     }
 
 
-    updateCoupon(req, res) {}
+    async updateCoupon(req, res) {
+       try {
+
+          const { couponId, ...updatedData } = req.body;
+
+          if(couponId===undefined){
+             return ResponseHandler.error(res,"Coupon Id not found.");
+          }
+
+          const response = await couponService.updateCoupon(couponId, updatedData);
+
+          return ResponseHandler.success(res, response);
+
+       } catch (e) {
+          return ResponseHandler.error(res, e);
+       }
+    }
 
 
-    deleteCoupon(req, res) {}
+    async deleteCoupon(req, res) {
+       const {couponId} = req.query;
+
+       if(couponId===undefined){
+          return ResponseHandler.error(res,"Coupon Id not found.");
+       }else{
+         try{
+            const response=await couponService.deleteCoupon({couponId:couponId},);
+            return ResponseHandler.success(res,response);
+         }catch (e) {
+            return ResponseHandler.error(res,e);
+         }
+       }
+    }
 
     async getCoupons(req, res) {
        try{
@@ -63,7 +92,24 @@ import normalizeStatus from "../../../utils/normalization.js";
     }
 
 
-    searchCoupons(req, res) {}
+    async searchCoupons(req, res) {
+       const {couponCode} = req.query;
+       if(couponCode===undefined){
+          return ResponseHandler.error(res,"Coupon Code not found.");
+       }else{
+          // Search In Database
+          try{
+             const response=await couponService.searchCoupon(couponCode);
+             if(response.length===0){
+                return ResponseHandler.error(res,"Wrong Coupon Code.");
+             }else{
+                return ResponseHandler.success(res,response);
+             }
+          }catch (e){
+             return ResponseHandler.error(res,e);
+          }
+       }
+    }
 
 }
 

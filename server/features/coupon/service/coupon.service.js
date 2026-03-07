@@ -18,7 +18,11 @@ class  CouponService {
 
 
     async deleteCoupon(couponId) {
-        return Coupon.destroy(couponId);
+        return Coupon.destroy({where: couponId});
+    }
+
+    async searchCoupon(code){
+        return Coupon.findAll({where: {couponCode:code}})
     }
 }
 
