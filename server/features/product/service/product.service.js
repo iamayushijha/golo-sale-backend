@@ -1,9 +1,20 @@
 import Product from '../model/product.model.js'
+import CategoryModel from "../../category/model/category.model.js";
+
 
 class  ProductService{
 
     getAllProducts = () => {
-        return Product.findAll({raw: true})
+        return Product.findAll(
+            {
+            include: [
+                {
+                    model:CategoryModel,
+                    as: 'category',
+                    attributes: [ 'categoryTitle', 'categoryInfo'],
+                },
+
+            ]})
     }
     addProduct = (data) => {
         return Product.create(data)

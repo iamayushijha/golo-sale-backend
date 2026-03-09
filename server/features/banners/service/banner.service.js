@@ -1,29 +1,54 @@
-import Banner from '../model/banner.model.js';
+import Banner from "../model/banner.model.js";
+import City from "../../cities/model/city.model.js";
 
+class BannerService {
 
-class  BannerService {
-
+    // create banner
     addBanner = (data) => {
         return Banner.create(data);
     }
+
+    // get all banners with city details
     getBanners = () => {
-        return Banner.findAll({ raw: true });
+        return Banner.findAll({
+            include: [
+                {
+                    model: City,
+                    as: "city",
+                    attributes: ["cityId", "cityName", "cityImageId", "cityStatus"]
+                }
+            ]
+        });
     }
+
+    // delete banner
     deleteBanner = (id) => {
-        return Banner.destroy({ where: id });
+        return Banner.destroy({
+            where: { bannerId: id }
+        });
     }
-    updateBanner=(bannerId,data)=>{
+
+    // update banner
+    updateBanner = (bannerId, data) => {
         return Banner.update(data, {
-                where: { bannerId },
-            }
-        );
+            where: { bannerId }
+        });
     }
 
-    // get city-specific banner
+    // get city-specific banners with city details
     getCityBanner = (cityId) => {
-        return Banner.findAll({ where: { cityId },raw:true });
+        return Banner.findAll({
+            where: { cityId },
+            include: [
+                {
+                    model: City,
+                    as: "city",
+                    attributes: ["cityId", "cityName", "cityImageId", "cityStatus"]
+                }
+            ]
+        });
     }
-}
 
+}
 
 export default new BannerService();
