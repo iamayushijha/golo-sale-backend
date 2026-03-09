@@ -11,13 +11,19 @@ class BannerService {
     // get all banners with city details
     getBanners = () => {
         return Banner.findAll({
+            attributes: {
+                include: [
+                    [City.sequelize.col("city.cityName"), "cityName"]
+                ]
+            },
             include: [
                 {
                     model: City,
                     as: "city",
-                    attributes: ["cityId", "cityName", "cityImageId", "cityStatus"]
+                    attributes: []
                 }
-            ]
+            ],
+            raw: true
         });
     }
 

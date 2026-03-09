@@ -7,11 +7,16 @@ class  ProductService{
     getAllProducts = () => {
         return Product.findAll(
             {
+                attributes: {
+                    include:[
+                  [CategoryModel.sequelize.col('category.categoryTitle'),"categoryTitle"]
+                    ]
+                },
             include: [
                 {
                     model:CategoryModel,
                     as: 'category',
-                    attributes: [ 'categoryTitle', 'categoryInfo'],
+                    attributes: [],
                 },
 
             ]})
