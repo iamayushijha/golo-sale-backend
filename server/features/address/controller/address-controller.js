@@ -6,7 +6,7 @@ class AddressController{
 
     async getAddress(req,res){
 
-        const userId=req.params.userId;
+        const userId=req.query.userId;
         if(!userId){
             return ResponseHandler.error(res,"UserId is required");
 

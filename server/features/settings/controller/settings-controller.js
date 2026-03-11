@@ -1,15 +1,29 @@
-
+import SettingsService from "../service/settings.service.js";
 import ResponseHandler from "../../../common/reponse_handler.js";
+
+
 class SettingsController {
     // Fetch settings
-    getSettings = (req, res) => {
+    getSettings = async (req, res) => {
 
-        ResponseHandler.success(res, [], "Settings Fetched", 200);
+    try{
+        const settings = await SettingsService.getSettings();
+        return ResponseHandler.success(res, settings);
+    }catch (e) {
+        return ResponseHandler.error(res,e);
+    }
+
     };
+
+
     // Update settings
-    updateSettings = (req, res) => {
-        ResponseHandler.success(res, [], "Settings Updated", 200);
+    updateSettings = async (req, res) => {
+
     };
+
+
+
 }
+
 
 export { SettingsController };
