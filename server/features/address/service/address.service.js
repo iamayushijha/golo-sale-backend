@@ -18,3 +18,6 @@ class AddressService {
         return Address.update
     }
 }
+
+
+export default new AddressService();
