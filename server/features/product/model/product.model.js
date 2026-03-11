@@ -1,7 +1,8 @@
 import sequelize from '../../../database/sequelize.js'
 import { DataTypes } from 'sequelize';
+import Category from "../../category/model/category.model.js";
 
-export default sequelize.define( 'Product', {
+const Product= sequelize.define( 'Product', {
     productId: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -60,3 +61,12 @@ export default sequelize.define( 'Product', {
         updatedAt: "updatedOn",
     }
     )
+
+/// Association
+Product.belongsTo(Category,{
+    foreignKey: 'productCategoryId',
+    targetKey: 'categoryId',
+    as: 'category',
+})
+
+export default Product;

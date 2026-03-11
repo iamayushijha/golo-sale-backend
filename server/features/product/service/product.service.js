@@ -1,9 +1,25 @@
 import Product from '../model/product.model.js'
+import CategoryModel from "../../category/model/category.model.js";
+
 
 class  ProductService{
 
     getAllProducts = () => {
-        return Product.findAll({raw: true})
+        return Product.findAll(
+            {
+                attributes: {
+                    include:[
+                  [CategoryModel.sequelize.col('category.categoryTitle'),"categoryTitle"]
+                    ]
+                },
+            include: [
+                {
+                    model:CategoryModel,
+                    as: 'category',
+                    attributes: [],
+                },
+
+            ]})
     }
     addProduct = (data) => {
         return Product.create(data)

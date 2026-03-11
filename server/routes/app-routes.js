@@ -10,6 +10,7 @@ import settingsRoutes from '../features/settings/settings-routes.js'
 import cityRoutes from '../features/cities/cities-routes.js'
 import mediaRoutes from '../features/media/media-routes.js'
 import addressRoutes from "../features/address/address-routes.js";
+import couponRoutes from "../features/coupon/coupon-routes.js"
 
 const router = express.Router()
 
@@ -57,6 +58,9 @@ router.use('/cities',cityRoutes)
 //// Media Routes
 router.use('/media',mediaRoutes)
 
+
+/// Coupon
+router.use('/coupon',couponRoutes)
 
 // Address Routes
 router.use('/address',addressRoutes)

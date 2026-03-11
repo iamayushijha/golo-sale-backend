@@ -5,6 +5,12 @@ class CitiesService {
         return City.findAll({ raw: true });
     }
 
+    async getCityById(id) {
+        return City.findAll({
+            where: {cityId: id},
+            raw: true,
+        })
+    }
     async createCity(data) {
         return City.create(data);
     }

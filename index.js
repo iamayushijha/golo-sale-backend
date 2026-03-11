@@ -3,6 +3,9 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import appRoutes from './server/routes/app-routes.js'
 import ResponseHandler from './server/common/reponse_handler.js'
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./server/config/swagger.js";
+
 
 
 const app = express()  //we create an instance  of express
@@ -25,6 +28,10 @@ app.use('/', appRoutes)
 
 // Serve images
 app.use('/images', express.static('uploads/'));
+
+
+// Swagger Ui
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.all('/*splat', (req, res) => {
   ResponseHandler.error(res, 'There is no such Page', 404)
