@@ -11,7 +11,7 @@ class SettingService  {
     //Update Setting
     updateSettings (settingId, settingData) {
         return Settings.update(settingData,{
-            where: {id: settingId}
+            where: {settingsId: settingId}
         })
     }
 }

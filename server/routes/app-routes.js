@@ -11,6 +11,7 @@ import cityRoutes from '../features/cities/cities-routes.js'
 import mediaRoutes from '../features/media/media-routes.js'
 import addressRoutes from "../features/address/address-routes.js";
 import couponRoutes from "../features/coupon/coupon-routes.js"
+import deliveryPartnerRoutes from "../features/delivery-partner/delivery-partner-routes.js";
 
 const router = express.Router()
 
@@ -64,6 +65,10 @@ router.use('/coupon',couponRoutes)
 
 // Address Routes
 router.use('/address',addressRoutes)
+
+
+// Delivery Agent Routes
+router.use('/agent',deliveryPartnerRoutes)
 
 export default router
 

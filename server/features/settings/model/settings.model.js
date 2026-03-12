@@ -27,8 +27,8 @@ const Settings = sequelize.define("settings", {
         allowNull:false,
     },
 
-    paymentMethod:{
-        type:DataTypes.STRING,
+        isCodEnable:{
+        type:DataTypes.TINYINT,
     }
 
 },
