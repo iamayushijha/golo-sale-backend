@@ -14,8 +14,14 @@ class AddressService {
 
     /// Update Address
 
-    updateAddress(userId, address){
-        return Address.update
+    updateAddress(addressId, address){
+        return Address.update(address,{where: {addressId:addressId}});
+    }
+
+
+    /// Delete Address
+    deleteAddress(addressId){
+        return Address.destroy({where:{addressId:addressId}});
     }
 }
 
