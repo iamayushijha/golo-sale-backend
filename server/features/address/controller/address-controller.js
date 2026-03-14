@@ -21,19 +21,6 @@ class AddressController{
 
     async addAddress(req,res){
 
-        const {
-            userId,
-            holderName,
-            building,
-            landmark,
-            cityId,
-            setAsDefault,
-            latitude,
-            longitude,
-            houseImage,
-            addressType,
-            status
-        } = req.body;
 
         const requiredFields = [
             "userId",
@@ -69,19 +56,6 @@ class AddressController{
 
 
     async updateAddress(req,res){
-        const {
-            addressId,
-            holderName,
-            building,
-            landmark,
-            cityId,
-            setAsDefault,
-            latitude,
-            longitude,
-            houseImage,
-            addressType,
-            status
-        } = req.body;
 
         const requiredFields = [
             "addressId",

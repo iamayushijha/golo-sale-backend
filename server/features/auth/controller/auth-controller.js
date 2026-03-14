@@ -4,6 +4,7 @@ import { generateOtp } from "../../../utils/otp.utils.js";
 import authService from "../service/auth.service.js";
 import { v4 as uuidv4 } from 'uuid';
 import referralService from "../../../features/refer/service/refer.service.js";
+import AuthService from "../service/auth.service.js";
 
 
 class AuthController {
@@ -93,6 +94,24 @@ class AuthController {
         }catch (error){
             console.error(error)
             return ResponseHandler.error(res,error.errors[0].message,200)
+        }
+    }
+
+
+
+    getAllUsers = async (req, res) => {
+        try {
+
+            const page = parseInt(req.query.page) || 1
+            const limit = parseInt(req.query.limit) || 10
+
+            const response = await AuthService.getAllUsers(page, limit)
+
+            return ResponseHandler.success(res, response, 'All Users', 200)
+
+        } catch (error) {
+            console.error(error)
+            return ResponseHandler.error(res, error, 200)
         }
     }
 

@@ -16,8 +16,14 @@ class DeliveryPartnerController {
   };
 
   // Update delivery partner details
-  updateDeliveryPartner = (req, res) => {
-    ResponseHandler.success(res, [], "Delivery Partner Updated", 200);
+  updateDeliveryPartner =async (req, res) => {
+
+    try{
+      const response=await AgentService.updateDeliveryPartner(req.body.agentId,req.body);
+      return ResponseHandler.success(res, response);
+    }catch (e) {
+      return ResponseHandler.error(res, e);
+    }
   };
 
   // Add new delivery partner
