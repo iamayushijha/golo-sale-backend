@@ -65,19 +65,30 @@ class CartController{
 
 
 
-    updateCart = async (req , res)=>{
-        const {cartId,productQty} = req.body
-        if(!cartId || !productQty){
-            return ResponseHandler.error(res,"Incorrect cartId or productQty")
-        }else {
-            // Update ProductQty
-         try{
-             const response = await CartService.updateQuantity(cartId, {productQty})
-            return ResponseHandler.success(res, response, 200)
-        }catch (e){
-             return ResponseHandler.error(res,e)
-         }
+    updateCart = async (req, res) => {
+
+        const { cartId, productQty } = req.body
+
+        if (!cartId || productQty === undefined) {
+            return ResponseHandler.error(res, "Incorrect cartId or productQty")
         }
+
+        try {
+
+            if (productQty === 0) {
+                const response = await CartService.removeItemFromCart(cartId)
+                return ResponseHandler.success(res, response, 200)
+            }
+
+            const response = await CartService.updateQuantity(cartId, { productQty })
+
+            return ResponseHandler.success(res, response, 200)
+
+        } catch (e) {
+            console.error(e)
+            return ResponseHandler.error(res, e)
+        }
+
     }
 
     removeItemFromCart = async (req , res)=>{
